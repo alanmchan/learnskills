@@ -27,3 +27,12 @@ commond|meaning|example
 
 stash
 ---
+
+commond|meaning|example
+-|-|-
+`git stash`|将工作区内容封存
+`git stash list`|查看封存的工作现场记录
+`git stash pop`|恢复工作现场的同时把stash内容也删了
+`git stash apply`|恢复工作现场的同时不会删除stash内容，需要利用`stash drop`手动删除
+`stash drop`|删除工作现场
+`git stash apply stash@{0}`|恢复指定的工作现场
