@@ -36,3 +36,16 @@ commond|meaning|example
 `git stash apply`|恢复工作现场的同时不会删除stash内容，需要利用`stash drop`手动删除
 `stash drop`|删除工作现场
 `git stash apply stash@{0}`|恢复指定的工作现场
+
+remote
+---
+commond|meaning|example
+-|-|-
+git remote add origin git@github.com:mingjunior/gitskills.git | 添加远程仓库
+git push -u origin master|第一次将本地主分支内容推送到远程仓库
+git push origin master|将本地主分支内容推送到远程仓库
+git push origin dev|将本地dev分支推送给远程
+git remote|要查看远程库的信息
+git remote -v|显示更详细的远程信息
+git clone git@github.com:mingjunior/gitskills.git | 从远程仓库抓取内容，默认只抓取master分支
+git checkout -b dev origin/dev|创建远程origin的dev分支到本地
