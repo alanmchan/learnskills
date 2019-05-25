@@ -6,7 +6,7 @@ git command
 basic
 ---
 
-commond|meaning|example
+command|meaning|example
 -|-|-
 `git init`|初始化仓库
 `git status`|查看仓库状态
@@ -14,7 +14,7 @@ commond|meaning|example
 branch
 ---
 
-commond|meaning|example
+command|meaning|example
 -|-|-
 `git branch`|查看分支
 `git branch <name>`|创建分支
@@ -28,7 +28,7 @@ commond|meaning|example
 stash
 ---
 
-commond|meaning|example
+command|meaning|example
 -|-|-
 `git stash`|将工作区内容封存
 `git stash list`|查看封存的工作现场记录
@@ -39,7 +39,8 @@ commond|meaning|example
 
 remote
 ---
-commond|meaning|example
+
+command|meaning|example
 -|-|-
 git remote add origin git@github.com:mingjunior/gitskills.git | 添加远程仓库
 git push -u origin master|第一次将本地主分支内容推送到远程仓库
