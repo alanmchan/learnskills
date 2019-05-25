@@ -23,3 +23,6 @@ commond|meaning|example
 `git merge <name>`|合并某分支到当前分支
 `git branch -d <name>`|删除分支
 `git log --graph --pretty=oneline --abbrev-commit`|查看分支合并情况
+
+stash
+---
