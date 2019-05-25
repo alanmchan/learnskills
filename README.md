@@ -50,3 +50,5 @@ git remote|要查看远程库的信息
 git remote -v|显示更详细的远程信息
 git clone git@github.com:mingjunior/gitskills.git | 从远程仓库抓取内容，默认只抓取master分支
 git checkout -b dev origin/dev|创建远程origin的dev分支到本地
+git branch --set-upstream-to=origin/dev dev|指定本地dev分支与远程origin/dev分支的链接
+git pull|将远程分支的内容抓取下来
