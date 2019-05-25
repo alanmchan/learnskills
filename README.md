@@ -1,13 +1,18 @@
-# gitskills
+gitskills
+===
 
 git command
+
+basic
+---
 
 commond|meaning|example
 -|-|-
 `git init`|初始化仓库
 `git status`|查看仓库状态
 
-branch
+branc
+---
 
 commond|meaning|example
 -|-|-
@@ -17,5 +22,3 @@ commond|meaning|example
 `git checkout -b <name>`|创建+切换分支
 `git merge <name>`|合并某分支到当前分支
 `git branch -d <name>`|删除分支
-
-master change
