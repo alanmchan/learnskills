@@ -93,7 +93,7 @@ command|meaning|example
 `git show <tagname>`|查看某标签详细信息
 `git tag <name>`|在当前分支上打标签,默认标签是打在最新提交的commit上的|`git tag v1.0`
 `git tag <tagname> <commit id>`|在指定的commit id上打标签|`git tag v0.9 f52c633`
-`git tag -a <tagname> -m <info> <commit id>|`|可以创建带有说明的标签，用-a指定标签名，-m指定说明文字|`git tag -a v0.1 -m "version 0.1 released" 1094adb`
+`git tag -a <tagname> -m <message> <commit id>|`|可以创建带有说明的标签，用-a指定标签名，-m指定说明文字|`git tag -a v0.1 -m "version 0.1 released" 1094adb`
 `git push origin <tagname>`|推送某个标签到远程
 `git push origin --tags`|一次性推送全部尚未推送到远程的本地标签
 `git tag -d <tagname>`|删除标签|`git tag -d v0.1`
