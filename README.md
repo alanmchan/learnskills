@@ -82,6 +82,7 @@ command|meaning|example
 `git branch --set-upstream-to=origin/dev dev`|指定本地dev分支与远程origin/dev分支的链接
 `git pull`|将远程分支的内容抓取下来,以便在本地解决冲突
 `git remote rm origin`|删除已有的远程库origin
+`git rebase origin`|你的本地当前分支里的每个提交(commit)取消掉，并且把它们临时 保存为补丁(patch)(这些补丁放到".git/rebase"目录中),然后把本地当前分支更新 到最新的"origin"分支，最后把保存的这些补丁应用到本地当前分支上。从而把本地未push的分叉提交历史整理成直线
 
 tag
 ---
