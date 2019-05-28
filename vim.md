@@ -9,6 +9,7 @@ Mode 模式
 * Command-Line Mode: 按 `:` 进入,执行一些特殊\高级命令
 
 常用命令:
+
 command|meaning
 -|-
 vim|进入vim
