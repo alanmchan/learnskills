@@ -80,7 +80,12 @@ command|meaning|example
 `git clone git@github.com:mingjunior/gitskills.git` | 从远程仓库抓取内容，默认只抓取master分支
 `git checkout -b dev origin/dev`|创建远程origin的dev分支到本地dev分支
 `git branch --set-upstream-to=origin/dev dev`|指定本地dev分支与远程origin/dev分支的链接
-`git pull`|将远程分支的内容抓取下来,以便在本地解决冲突
+`git pull`|将远程分支的内容抓取下来,以便在本地解决冲突,没有冲突自行合并
+`git pull <远程主机名> <远程分支名>:<本地分支名>`|抓取远程主机的某个分支的内容与本地某个分支合并
+`git pull <远程主机名> <远程分支名>`|抓取远程主机的某个分支的内容与当前分支合并.如果当前分支与远程分支存在追踪关系,则可以省略远程分支,即`git pull <远程主机>`.如果当前分支只有一个追踪分支,则远程主机也可以省略
+`git fetch`|将远程分支的内容抓取下来,但是不会自行合并.git pull = git fetch + git merge
+`git fetch origin master`|将远程主分支内容抓取到本地,随后再手动决定是否合并
+`git fetch origin master:tmp` --> `git diff tmp` --> `git merge tmp`|将远程主分支内容抓取到本地临时分支,查看比较区别,手动合并
 `git remote rm origin`|删除已有的远程库origin
 `git rebase origin`|你的本地当前分支里的每个提交(commit)取消掉，并且把它们临时 保存为补丁(patch)(这些补丁放到".git/rebase"目录中),然后把本地当前分支更新 到最新的"origin"分支，最后把保存的这些补丁应用到本地当前分支上。从而把本地未push的分叉提交历史整理成直线
 
