@@ -5,4 +5,4 @@ Programming Skill
 * [Vim](vim.md)
 * [Emacs](emacs.md)
 * [Ajax](Ajax.md)
-* [Flask](Ajax.md)
+* [Flask](Flask.md)
