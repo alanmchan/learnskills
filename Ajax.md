@@ -271,7 +271,7 @@ HTTP 协议中有一个同源策略,即在HTTP中只有同源地址才能发送a
 
 非同源地址示例:`http://www.tedu.cn/a.html`和`https://www.tedu.cn/server`,`http://localhost:5000/a.html`和`http://127.0.0.1:5000/server`
 
-### 7.2 jQuery对跨域的支持
+### 7.1 jQuery对跨域的支持
 
 jsonp: json with padding
 
@@ -286,24 +286,3 @@ $.ajax({
 });
 ```
 
-## 8. 蓝图 - Blueprint
-
-在一个大的Flask实例app下面创建蓝图,分别管理不同路由和视图函数
-
-1. 在分支模块中
-
-```py
-from flask import Blueprint
-app_branch01 = Blueprint('蓝图别名', __name__)
-
-@app_branch01.route('/')
-def index():
-    pass
-```
-
-2. 在主分支模块中
-
-```py
-from branch import app_branch01 as 别名
-app.register_blueprint(别名)
-```
