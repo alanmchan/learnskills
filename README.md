@@ -1,8 +1,8 @@
 Programming Skill
 ===
 
-* [Git](git.md)
-* [Vim](vim.md)
-* [Emacs](emacs.md)
+* [Git](Git.md)
+* [Vim](Vim.md)
+* [Emacs](Emacs.md)
 * [Ajax](Ajax.md)
 * [Flask](Flask.md)
