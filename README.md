@@ -6,3 +6,4 @@ Programming Skill
 * [Emacs](Emacs.md)
 * [Ajax](Ajax.md)
 * [Flask](Flask.md)
+* [Django](Django.md)
