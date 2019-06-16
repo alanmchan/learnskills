@@ -1,6 +1,9 @@
 Programming Skill
 ===
 
-* [git](git.md)
-* [vim](vim.md)
-* [emacs](emacs.md)
+* [Git](Git.md)
+* [Vim](Vim.md)
+* [Emacs](Emacs.md)
+* [Ajax](Ajax.md)
+* [Flask](Flask.md)
+* [Django](Django.md)
