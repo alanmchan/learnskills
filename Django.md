@@ -1083,6 +1083,8 @@ def register(request):
 
 ---
 
+http协议是无状态的: 每次请求都是一次新的请求，不会记得之前通信的状态, 实现状态保持的方式: 在客户端或服务器端存储与会话有关的数据. 存储方式包括cookie、session. 使用cookie, 所有数据存储在客户端, 注意不要存储敏感信息. 客户端与服务器端的一次通信, 就是一次会话, 会话一般指session对象, 推荐使用sesison方式，所有数据存储在服务器端，在客户端cookie中存储session_id. 状态保持的目的是在一段时间内跟踪请求者的状态, 可以实现跨页面访问当前请求者的数据. 注意: 不同的请求者之间不会共享这个数据, 与请求者一一对应
+
 ### 10.1 cookies
 
 cookies 保存在客户端的存储空间, cookies 在浏览器上是以键值对的形式进行存储的, 键和值都是以ASCII字符串的形存储(不能是中文字符串)
@@ -1111,9 +1113,114 @@ cookies 保存在客户端的存储空间, cookies 在浏览器上是以键值�
 
 `响应对象.delete_cookie(key)`
 
-## 10.2 session
+### 10.2 session
 
-## 11. admin 后台数据库关联
+session - 会话, session是在服务器上开辟一段空间用于保留浏览器和服务器交互时的重要数据, 每个客户端都可以在服务器端有一个独立的Session.
+
+#### 10.2.1 启用session
+
+在`setting.py`中:
+
+* 在`INSTALLED_APPS`列表中添加 `django.contrib.sessions`
+* 在`MIDDLEWARE_CLASSES`列表中添加 `django.contrib.sessions.middleware.SessionMiddleware`
+
+默认已启用
+
+#### 10.2.2 session基本操作
+
+session对象是一个QueryDict字典, 可以用类似于字典的方式进行操作
+
+#### 10.2.2.1 添加session
+
+`request.session['key'] = value`
+
+##### 10.2.2.2 获取session
+
+* `request.session['key']`
+* `request.session.get('key', 缺省值)`
+
+##### 10.2.2.3 修改session
+
+`request.session['key']` 将已存在的session修改
+
+##### 10.2.2.4 删除session
+
+`del request.session['key']`
+
+#### 10.2.3 设置session
+
+在项目`setting.py`文件中
+
+```py
+SESSION_COOKIE_AGE = 60 * 30  # 指定session_id在cookies中保存的时长
+SESSION_EXPIER_AT_BROWSER_CLOSE = True  # 设置只要浏览器关闭,session就失效
+```
+
+注意: 使用session时需要迁移数据库, 否则报错
+
+```bash
+python3 manage.py makemigrations
+python3 manage.py migrate
+```
+
+## 11 中间件 middleware
+
+---
+
+中间件是 Django 请求/响应处理的钩子框架。它是一个轻量级的、低级的“插件”系统，用于全局改变
+Django 的输入或输出。
+
+### 11.1 中间件编写
+
+中间件类须继承自 `django.utils.deprecation.MiddlewareMixin`类
+
+中间件类须实现下列五个方法中的一个或多个:
+
+方法|说明
+-|-
+`def process_request(self, request):`|执行视图之前被调用, 在每个请求上调用, 返回`None`或`HttpResponse`对象
+`def process_view(self, request, callback, callback_args, callback_kwargs):`|调用视图之前被调用, 在每个请求上调用, 返回`None`或`HttpResponse`对象
+`def process_response(self, request, response):`|所有响应返回浏览器之前被调用, 在每个请求上调用, 返回`HttpResponse`对象
+`def process_exception(self, request, exception):`|当处理过程中抛出异常时调用, 返回一个HttpResponse对象
+`def process_template_response(self, request, response):`|在视图刚好执行完毕之后被调用, 在每个请求上调用, 返回实现了render方法的响应对象
+
+注: 中间件中的大多数方法在返回None时表示忽略当前操作进入下一项事件，当返回
+HttpResponese对象时表示此请求结果，直接返回给客户端
+
+```py
+from django.http import HttpResponse, Http404
+from django.utils.deprecation import MiddlewareMixin
+
+class MyMiddleWare(MiddlewareMixin):
+    def process_request(self, request):
+        print("中间件方法 process_request 被调用")
+
+    def process_view(self, request, callback, callback_args, callback_kwargs):
+        print("中间件方法 process_view 被调用")
+    def process_response(self, request, response):
+        print("中间件方法 process_response 被调用")
+        return response
+
+    def process_exception(self, request, exception):
+        print("中间件方法 process_exception 被调用")
+
+    def process_template_response(self, request, response):
+        print("中间件方法 process_template_response 被调用")
+        return response
+```
+
+### 11.2 注册中间件
+
+在`settings.py`中注册中间件
+
+```py
+MIDDLEWARE = [
+    ...
+    'middleware.mymiddleware.MyMiddleWare',
+]
+```
+
+## 12. admin 后台数据库关联
 
 ---
 
@@ -1121,7 +1228,7 @@ Django提供了比较完善的后台数据库关联系统,便于在开发和测�
 
 后台数据库登录地址 `127.0.0.1:8000/admin`
 
-### 11.1 创建后台管理账号并进行设置
+### 12.1 创建后台管理账号并进行设置
 
 `python3 manage.py createsuperuser`
 
@@ -1129,9 +1236,9 @@ Django提供了比较完善的后台数据库关联系统,便于在开发和测�
 * password: `1234.com`
 * email: `chmingx@foxmail.com`
 
-### 11.2 后台关联数据库表的配置
+### 12.2 后台关联数据库表的配置
 
-#### 11.2.1 在app的admin.py中注册要关联的模型类
+#### 12.2.1 在app的admin.py中注册要关联的模型类
 
 ```py
 from django.contrib import admin
@@ -1143,7 +1250,7 @@ admin.site.register(Book)
 admin.site.register(Publisher)
 ```
 
-#### 11.2.2 在modles模型类中重写`__str__(self)`修改显示内容
+#### 12.2.2 在modles模型类中重写`__str__(self)`修改显示内容
 
 ```py
 class Author(models.Model):
@@ -1152,7 +1259,7 @@ class Author(models.Model):
         return "%d, %s" % (self.id, self.name)
 ```
 
-#### 11.2.3 添加模型管理器列表所有选定项
+#### 12.2.3 添加模型管理器列表所有选定项
 
 ```py
 # 在app的admin.py文件中声明管理器类
@@ -1163,7 +1270,7 @@ class AuthorManager(admin.ModelAdmin):
 admin.site.register(Author,AuthorManager)
 ```
 
-#### 11.2.4 模型类中的内嵌类 Meta
+#### 12.2.4 模型类中的内嵌类 Meta
 
 通过内嵌类Meta设定模型类的属性和展示形式
 
@@ -1183,7 +1290,7 @@ title = models.CharField(max_length=32, null=False, unique=True, db_index=True, 
 # title = models.CharField('标题', max_length=32, null=False, unique=True, db_index=True) # 字段中第一个参数字符串默认为verbose_name
 ```
 
-#### 11.2.5 高级管理
+#### 12.2.5 高级管理
 
 ```py
 class AuthorManager(admin.ModelAdmin):
