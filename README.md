@@ -2,10 +2,12 @@ Programming Skill
 ===
 
 * [Git](Git.md)
+* [Re](Re.md)
 
 * [Vim](Vim.md)
 * [Emacs](Emacs.md)
 
+* [Web](Web.md)
 * [HTML](HTML.md)
 * [CSS](CSS.md)
 * [JavaScript](JavaScript.md)
@@ -15,5 +17,13 @@ Programming Skill
 * [Flask](Flask.md)
 * [Django](Django.md)
 
+* [Database](Database.md)
 * [MySQL](MySQL.md)
 * [MangoDB](MangoDB.md)
+
+* [Linux](Linux.md)
+
+* [C](C.md)
+* [C++](C++.md)
+* [Java](Java.md)
+* [Python](Python.md)
