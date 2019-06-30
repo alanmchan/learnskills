@@ -1,5 +1,5 @@
 # C Programing Language
 
-- [Introduction](C_introduction.md)
-- [Const&Variable](C_const_variable.md)
+- [Introduction](C_Introduction.md)
+- [Const&Variable](C_Const_Variable.md)
 
