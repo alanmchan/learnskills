@@ -31,7 +31,7 @@ Programming Skill
 
 ---
 
-* [C](C.md)
+* [C](C/C.md)
 * [C++](C++.md)
 * [Java](Java.md)
 * [Python](Python.md)
