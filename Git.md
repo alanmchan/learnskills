@@ -86,6 +86,7 @@ command|meaning|example
 `git fetch`|将远程分支的内容抓取下来,但是不会自行合并.git pull = git fetch + git merge
 `git fetch origin master`|将远程主分支内容抓取到本地,随后再手动决定是否合并
 `git fetch origin master:tmp` --> `git diff tmp` --> `git merge tmp`|将远程主分支内容抓取到本地临时分支,查看比较区别,手动合并
+`git pull origin master --allow-unrelated-histories`|把远程仓库和本地仓库同步，消除差异. 在`git push`报`! [rejected] master -> master (non-fast-forward)`错误时使用，再add, commit相应文件，再push就可以了
 `git remote rm origin`|删除已有的远程库origin
 `git rebase origin`|你的本地当前分支里的每个提交(commit)取消掉，并且把它们临时 保存为补丁(patch)(这些补丁放到".git/rebase"目录中),然后把本地当前分支更新 到最新的"origin"分支，最后把保存的这些补丁应用到本地当前分支上。从而把本地未push的分叉提交历史整理成直线
 
