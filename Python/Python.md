@@ -12,7 +12,17 @@ Basic
   - [List](List.md)
   - [Tuple](Tuple.md)
   - [Dict](Dict.md)
-  - [Set](set.md)
-  - [Bytes](bytes.md)
-- [Function](function.md)
+  - [Set](Set.md)
+  - [Bytes](Bytes.md)
+- [Function](Function.md)
 
+
+
+Core
+
+---
+
+- [Functional Programming](Functional Programming.md)
+- [Module](Module.md)
+- [Package](Package.md)
+- 

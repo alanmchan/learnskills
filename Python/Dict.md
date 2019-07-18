@@ -4,7 +4,7 @@
 
 由一系列 **键** **(key) -** **值** **(value)** **对**组成的**可变** **映射**容器
 
-![dict](dict.png)
+![dict](images/dict.png)
 
 说明：
 

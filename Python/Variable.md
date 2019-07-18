@@ -6,7 +6,7 @@
 
 注意：变量本身不存储数据，不同于C语言
 
-![变量](variable.png)
+![变量](images/variable.png)
 
 ```python
 a = 500

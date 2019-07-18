@@ -13,7 +13,7 @@
 [1, 2, 3, 'a', 'python', '汉字']
 ```
 
-![列表内存图](list.png)
+![列表内存图](images/list.png)
 
 列表与字符串的比较
 
@@ -116,13 +116,13 @@ L = []  # 将空列表赋值给L，原列表数据不变
 
 ## 浅拷贝和深拷贝
 
-![copy1](copy1.png)
+![copy1](images/copy1.png)
 
-![copy](copy2.png)
+![copy](images/copy2.png)
 
-![copy3](copy3.png)
+![copy3](images/copy3.png)
 
-![copy4](copy4.png)
+![copy4](images/copy4.png)
 
 Python的变量与对象是绑定关系，变量并不存储对象的数据，变量里面存的是绑定的对象的地址
 
@@ -263,5 +263,5 @@ bubble_sort(L)
 delete_element(L)
 ```
 
-![插入和删除](insert_delete.png)
+![插入和删除](images/insert_delete.png)
 
