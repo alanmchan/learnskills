@@ -22,7 +22,8 @@ Core
 
 ---
 
-- [Functional Programming](Functional Programming.md)
+- [Functional_Programming](Functional_Programming.md)
 - [Module](Module.md)
 - [Package](Package.md)
 - 
+
