@@ -37,3 +37,4 @@ from 包 import *
 包内的 `__init__.py` 内的 `__all__` 列表用来记录此包中含有哪些子包或模块可以被 `from 包 import * ` 导入
 
 `__all__`列表限定导入的作用只对 `from 包 import * ` 起作用
+
