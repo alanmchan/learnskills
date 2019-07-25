@@ -145,7 +145,7 @@ Project
 
 * 通过loader获取模板,再通过HttpResponse进行响应
 
-```py
+```python
 from django.template import loader
 t = loader.get_template('模板名称') # 通过loader加载模板
 html = t.render() # 将模板渲染成字符串
@@ -154,7 +154,7 @@ return HttpResponse(html) # 响应
 
 * 通过render()直接加载并响应
 
-```py
+```python
 from django.shortcuts import render
 return render(request,'模板名称')
 ```
@@ -344,7 +344,7 @@ ORM: Object Relationship Mapping 对象关系映射
 
 #### 6.1.2 在 `settings.py` 中修改 `DATABASES` 参数值
 
-```py
+```python
 DATABASES = {
     'default':{
         'ENGINE':'django.db.backends.sqlite3',
@@ -353,7 +353,7 @@ DATABASES = {
 }
 ```
 
-```py
+```python
 DATABASES = {
     'default':{
         'ENGINE':'django.db.backends.mysql',  # 指定数据库引擎
@@ -371,7 +371,7 @@ DATABASES = {
 * 安装pymsql `pip3 install pymysql`
 * 修改项目中`__init__.py`, 加入如下内容来提供pymysql引擎支持
 
-```py
+```python
 import pymysql
 pymysql.install_as_MySQLdb()
 ```
@@ -385,7 +385,7 @@ pymysql.install_as_MySQLdb()
 
 #### 6.3.1 语法
 
-```py
+```python
 class CLASSNAME(models.Model):
     NAME = models.FIELD_TYPE(FIELD_OPTIONS)
 ```
@@ -438,7 +438,7 @@ e.g. `name = models.CharField(max_lenght=30, unique=True, null=False, db_index=T
 
 在每个类中都有一个类 class Meta,如下:
 
-```py
+```python
 class Meta:
     managed = False # 是否修改过
     db_table = '表名' # 可以自己创建实例类的时候在类中创建该类,并指定表名称
@@ -452,14 +452,14 @@ Create - 增加, Read - 读取, Update - 更新, Delete - 删除
 
 1. 用类创建对象,再用save()保存
 
-```py
+```python
 obj = Author(name='alan', age=20)
 obj.save()
 ```
 
 2. 用字典创建对象,再用save()保存
 
-```py
+```python
 dic = {'name':'bran', age=19}
 obj = Author(**dic)
 obj.save()
@@ -475,9 +475,9 @@ obj.save()
 
 查询函数|示例|作用|返回结果
 -|-|-|-
-`all()`| `Author.objects.all()`|查询所有数据|返回QuerySet对象 `<QuerySet [<Author: 1.cm>, <Author: 2.alan>, <Author: 3.carl>]>`
+`all()`| ```Author.objects.all()``` |查询所有数据|返回QuerySet对象 `<QuerySet [<Author: 1.cm>, <Author: 2.alan>, <Author: 3.carl>]>`
 `get(条件)`|`Author.objects.get(id=1)`|查询符合条件的对像,只能返回一个,多个报错,没有数据也报错|返回查询到的对象 `<Author: 1.cm>`
-`filter(条件1,条件2)`|`Author.objects.filter(name='carl')``Author.objects.filter(id=1, name='alan')`|查询符合条件的对象,可以返回多个.多个条件用逗号分开,相当于数据库中的`and`|返回结果为QuerySet对象
+`filter(条件1,条件2)`|`Author.objects.filter(name='carl')` `Author.objects.filter(id=1, name='alan')`|查询符合条件的对象,可以返回多个.多个条件用逗号分开,相当于数据库中的`and`|返回结果为QuerySet对象
 `order_by()`|`Author.objects.order_by('-age')`|按照指定条件对结果进行排序.默认为升序, 字段前面加`-`则为降序|返回结果为QuerySet对象 `<QuerySet [<Author: 2.alan>, <Author: 3.carl>, <Author: 1.cm>]>`
 `values()`| `Author.objects.values('id','name')`|查询部分列的数据,会将查询到的数据封装到字典中,再封装到列表中返回|返回QuerySet对象, `<QuerySet [{'id': 2, 'name': 'alan'}, {'id': 3, 'name': 'carl'}, {'id': 1, 'name': 'cm'}]>`
 `values_list()`|`Author.objects.values_list('id','name')`|查询指定返回列,会将查询的数据封装到元组中,再封装到列表中返回|返回QuerySet对象, `<QuerySet [(2, 'alan'), (3, 'carl'), (1, 'cm')]>`
@@ -514,7 +514,7 @@ obj.save()
 
 e.g.
 
-```py
+```python
 re = Author.objects.aggregate(Avg('age'), Count('name'), age__Sum=Sum('age'))
 print(re) # {'name__count': 4, 'age__avg': 20.75, 'age__Sum': 83}
 ```
@@ -528,11 +528,13 @@ print(re) # {'name__count': 4, 'age__avg': 20.75, 'age__Sum': 83}
 
 e.g.
 
-```py
+```python
 re = Author.objects.values('isActive').annotate(Count('name'))
-print(re) # <QuerySet [{'name__count': 3, 'isActive': True}, {'name__count': 1, 'isActive': False}]>
+print(re) 
+# <QuerySet [{'name__count': 3, 'isActive': True}, {'name__count': 1, 'isActive':False}]>
 re = Author.objects.values('isActive').annotate(Count('name')).filter(age__gt=20)
-print(re) # <QuerySet [{'isActive': True, 'name__count': 1}, {'isActive': False, 'name__count': 1}]>
+print(re) 
+# <QuerySet [{'isActive': True, 'name__count': 1}, {'isActive': False, 'name__count':1}]>
 ```
 
 #### 6.4.3 修改
@@ -545,7 +547,7 @@ print(re) # <QuerySet [{'isActive': True, 'name__count': 1}, {'isActive': False,
 
 e.g.
 
-```py
+```python
 # 1. 查 通过get()得到要修改的单个实体对象
 author = Author.objects.get(id=4)
 # 2. 改 通过 对象.属性 的方式修改
@@ -564,7 +566,7 @@ e.g. `Author.objects.all().update(isActive=True)`
 
 利用 delete() 方法删除单个对象或批量删除
 
-```py
+```python
 # 删除单个对象
 Author.objects.get(id=4).delete()
 
@@ -584,7 +586,7 @@ Django提供的两种特殊的查询方法,使用之前要先导入 `from django
 
 不使用`F查询`修改数据 VS 使用`F查询`修改数据
 
-```py
+```python
 def query_f(request):
     # 不使用 F查询 修改数据
     author = Author.objects.get(id=7)
@@ -662,7 +664,7 @@ with connection.cursor() as cursor:
 
 #### 7.1.2 利用循环访问 `一.多` 遍历出所有多的实例 
 
-```py
+```python
 def otm_views(request):
     books = Book.objects.all()
     publishers = Publisher.objects.all()
@@ -674,7 +676,7 @@ def otm_views(request):
     return render(request, 'otm.html', locals())
 ```
 
-```html
+```django
 <h1> book --> publisher </h1>
 {% for book in books %}
     <h3>{{ book.title }}:{{ book.publisher.name }}-{{ book.publisher_id }}</h3>
@@ -708,7 +710,7 @@ def otm_views(request):
 1. 表中的外键关联对应的对象id: `对象.属性_id = 另一个类的对象.id`
 2. 属性关联对象: `对象.属性 = 另一个类的对象` 
 
-```py
+```python
 # 添加数据并关联另一个表
 wife1 = Wife()
 wife1.name = 'Daisy'
@@ -730,7 +732,7 @@ Wife.objects.create(name='Jennifer', age=32, author_id=8)
 
 #### 7.2.3 一对一查询
 
-```py
+```python
 wifes = Wife.objects.all()
 authors = Author.objects.all()
 # for author in authors:
@@ -740,7 +742,7 @@ for wife in wifes:
 return render(request, 'oto.html', locals())
 ```
 
-```html
+```django
 <h1>反向查询</h1>
 {% for author in authors %}
     <h3>{{ author.name }}:{{ author.wife.name }}</h3>
@@ -763,7 +765,7 @@ return render(request, 'oto.html', locals())
   * 该实体类增加一个属性, `属性`, 关联另一个类的对象们, 可以调用查询函数后再遍历
   * 另一个类中隐式增加一个该类名的小写的属性加set, `类名小写_set`, 关联另一个类的对象们, 可以调用查询函数后再遍历
 
-```py
+```python
 class Book(models.Model):
     # 多对多关联
     author = models.ManyToManyField(Author)
@@ -771,7 +773,7 @@ class Book(models.Model):
 
 #### 7.3.2 查询
 
-```py
+```python
 def mtm_views(request):
     # 正向查询
     books = Book.objects.get(id=1)
@@ -881,7 +883,7 @@ Django中的forms模块能将模板中的表单与class结合,利用class生成�
 3. 创建一个类, 一个类生成一个表单
 4. 在类中创建属性, 一个属性对应表单中一个控件
 
-```py
+```python
 from django import forms
 
 class ClassName(forms.Form):
@@ -1017,7 +1019,7 @@ widgets = {
 1. 导入forms模块中的类后, 在视图函数中创建form对象, `form = 类名()`
 2. 将form对象发送到模板进行解析, `return render(request, 'form.html', locals())`
 
-```py
+```python
 from .forms import RegiserFrom
 
 def register(request):
@@ -1030,7 +1032,7 @@ def register(request):
 
 ##### 9.5.2.1 手动解析
 
-```html
+```django
 <form action="">
     {% for field in form %}
         <p>

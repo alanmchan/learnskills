@@ -672,7 +672,7 @@ def file_views():
 
 ### 6.6 综合练习
 
-![flask exercise](C:\Users\UI\Desktop\learnskills\image\flask-文件上传练习.png)
+![flask exercise](image\flask-文件上传练习.png)
 
 ```python
 @app.route('/file-pro', methods=['GET', 'POST'])
