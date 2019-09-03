@@ -105,11 +105,17 @@ conda remove pandas
 conda remove -n mytest --all
 ```
 
+查看当前环境信息
+
+```sh
+conda info
+```
+
 查看所有环境
 
 ```sh
 conda env list
-conda list -e
+conda info -e
 ```
 
 导出
