@@ -21,6 +21,8 @@ Programming Skill
 * [JavaScript](Web/JavaScript.md)
 * [jQuery](Web/jQuery.md)
 * [Ajax](Web/Ajax.md)
+* [React](Web/React.md)
+* [Vue](Web/Vue.md)
 
 ---
 
